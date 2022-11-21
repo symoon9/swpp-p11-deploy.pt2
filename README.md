@@ -3,29 +3,35 @@
 - Deploy
 
 ## Docker 
+We provide a docker image that contains `django`, `uwsgi`, and `nginx`.
 ```
-docker pull snuspl/swpp:practice8
+docker pull snuspl/swpp:practice11
+```
 
-docker run --rm -it \
-    --ipc=host \
-    --name "practice10" \
-    -p 0.0.0.0:3000:3000 -p 0.0.0.0:8000:8000 \
-    -v ${PWD}:/home \
-    snuspl/swpp:practice8 \
-    /bin/bash
+Build backend docker image by 
+```
+cd backend
+sudo docker build -t backend .
+```
+
+Build frontend docker image by 
+```
+cd frontend
+sudo docker build -t frontend .
 ```
 
 ## Frontend
 ```
-cd frontend
-yarn
-yarn start
+sudo docker run -d --rm\
+    --name "frontend" \
+    -p 80:80 \
+    frontend:latest
 ```
 
 ## Backend
 ```
-cd backend
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver 0.0.0.0:8000
+sudo docker run -d --rm\
+    --name "backend" \
+    -p 8000:8000 \
+    backend:latest 
 ```
