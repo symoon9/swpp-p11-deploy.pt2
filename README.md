@@ -1,6 +1,6 @@
-# SWPP Practice Session #10
+# SWPP Practice Session #11
 - Connected frontend and backend
-- Deploy
+- Deploy service with web server & https
 
 ## Docker 
 We provide a docker image that contains `django`, `uwsgi`, and `nginx`.
@@ -22,16 +22,10 @@ sudo docker build -t frontend .
 
 ## Frontend
 ```
-sudo docker run -d --rm\
-    --name "frontend" \
-    -p 80:80 \
-    frontend:latest
+./run_docker_frontend.sh
 ```
 
 ## Backend
 ```
-sudo docker run -d --rm\
-    --name "backend" \
-    -p 8000:8000 \
-    backend:latest 
+./run_docker_backend.sh
 ```
